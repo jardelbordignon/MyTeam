@@ -1,24 +1,9 @@
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
 export default class InvitesController {
-  public async index ({}: HttpContextContract) {
+
+  public async store ({ request, response }: HttpContextContract) {
+    console.log(request.team)
   }
 
-  public async create ({}: HttpContextContract) {
-  }
-
-  public async store ({}: HttpContextContract) {
-  }
-
-  public async show ({}: HttpContextContract) {
-  }
-
-  public async edit ({}: HttpContextContract) {
-  }
-
-  public async update ({}: HttpContextContract) {
-  }
-
-  public async destroy ({}: HttpContextContract) {
-  }
 }

@@ -32,6 +32,8 @@ export default class User extends Default {
   @column()
   public rememberMeToken?: string
 
+  public currentTeam?: number
+
   @beforeSave()
   public static async hashPassword (user: User) {
     if (user.$dirty.password) {

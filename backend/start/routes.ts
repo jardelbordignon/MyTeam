@@ -33,5 +33,12 @@ Route.group(() => {
 
   }).middleware('auth')
 
+
+  Route.group(() => {
+
+    Route.post('/invites', 'InvitesController.store')
+
+  }).middleware(['auth', 'team'])
+
 })
 .prefix('v1')
