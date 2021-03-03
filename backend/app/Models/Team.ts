@@ -25,8 +25,6 @@ export default class Team extends Default {
 
   @beforeSave()
   public static async slugfy (team: Team) {
-    if (team.$dirty.name && !team.$dirty.slug) {
-      team.$dirty.slug = Urlize(team.$dirty.name)
-    }
+    if (team.name) team.slug = Urlize(team.name)
   }
 }

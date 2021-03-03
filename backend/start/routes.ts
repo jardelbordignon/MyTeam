@@ -27,8 +27,11 @@ Route.group(() => {
 
   // Route.get('/images/:path', 'FilesController.show')
 
-  // Route.group(() => {
-  // }).middleware('auth')
+  Route.group(() => {
+
+    Route.resource('/teams', 'TeamsController').apiOnly()
+
+  }).middleware('auth')
 
 })
 .prefix('v1')
