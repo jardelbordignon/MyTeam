@@ -1,4 +1,4 @@
-import { BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
+import { afterCreate, BelongsTo, belongsTo, column } from '@ioc:Adonis/Lucid/Orm'
 
 import Default from './Default'
 import User from './User'
@@ -17,5 +17,20 @@ export default class Invite extends Default {
 
   @belongsTo(() => Team, { foreignKey: 'team_id' })
   public team: BelongsTo<typeof Team>
+
+  @column()
+  public email: string
+
+  @afterCreate()
+  public static async sendInvitationEmail (invite: Invite) {
+    const { email } = invite
+    const invited = await User.findBy('email', email)
+
+    if (invited) {
+      await invited.related('teams').attach([invite.team_id])
+    } else {
+      console.log('Criar conta')
+    }
+  }
 
 }
